@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 function Header({ text }) {
   return (
     <div>
-      <h2 data-testid='title' className='title'>
+      <h2 test-id="title" className="title">
         {text}
       </h2>
     </div>
@@ -12,7 +12,7 @@ function Header({ text }) {
 }
 
 Header.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
 }
 
 export default Header

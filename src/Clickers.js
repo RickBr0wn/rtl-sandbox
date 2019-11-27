@@ -13,7 +13,7 @@ export default function Clickers() {
   return (
     <div>
       <button onClick={increase}>Up</button>
-      <span data-testid='count'>{count}</span>
+      <span test-id="count">{count}</span>
       <button onClick={decrease}>Down</button>
     </div>
   )

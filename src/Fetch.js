@@ -26,8 +26,8 @@ export default function Fetch({ url }) {
   useAxios(url, setData)
 
   if (!data) {
-    return <span data-testid="loading">Loading data...</span>
+    return <span test-id="loading">Loading data...</span>
   }
 
-  return <span data-testid="resolved">{data.greeting}</span>
+  return <span test-id="resolved">{data.greeting}</span>
 }
