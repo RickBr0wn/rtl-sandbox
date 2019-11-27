@@ -1,6 +1,7 @@
 import React from 'react'
 import Clickers from './Clickers'
 import Fetch from './Fetch'
+import Counter from './Counter'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <hr />
       <Fetch url="https://jsonplaceholder.typicode.com/todos/1" />
       <hr />
+      <Counter />
     </div>
   )
 }
