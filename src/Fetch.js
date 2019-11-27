@@ -29,5 +29,5 @@ export default function Fetch({ url }) {
     return <span test-id="loading">Loading data...</span>
   }
 
-  return <span test-id="resolved">{data.greeting}</span>
+  return <span test-id="resolved">{data.title}</span>
 }
