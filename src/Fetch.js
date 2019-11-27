@@ -22,11 +22,12 @@ const useAxios = (url, setData) => {
 
 export default function Fetch({ url }) {
   const [data, setData] = useState(null)
+
   useAxios(url, setData)
 
   if (!data) {
-    return <span data-testid='loading'>Loading data...</span>
+    return <span data-testid="loading">Loading data...</span>
   }
 
-  return <span data-testid='resolved'>{data.title}</span>
+  return <span data-testid="resolved">{data.greeting}</span>
 }

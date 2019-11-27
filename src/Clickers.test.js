@@ -3,12 +3,9 @@ import {
   render,
   cleanup,
   fireEvent,
-  waitForElement
+  waitForElement,
 } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-// the axios mock is in __mocks__/
-// see https://jestjs.io/docs/en/manual-mocks
-// import axiosMock from 'axios'
 import Clickers from './Clickers'
 
 afterEach(cleanup)
@@ -24,9 +21,9 @@ it('should increment the counter when the `UP` button is clicked', () => {
   expect(getByTestId('count')).toHaveTextContent('1')
 })
 
-// it('should asynchronously decrement the counter when the `DOWN` button is clicked', async () => {
-//   const { getByText } = render(<Clickers />)
-//   fireEvent.click(getByText('Down'))
-//   const counterSpan = await waitForElement(() => getByText('-1'))
-//   expect(counterSpan).toHaveTextContent('-1')
-// })
+it('should asynchronously decrement the counter when the `DOWN` button is clicked', async () => {
+  const { getByText } = render(<Clickers />)
+  fireEvent.click(getByText('Down'))
+  const counterSpan = await waitForElement(() => getByText('-1'))
+  expect(counterSpan).toHaveTextContent('-1')
+})
