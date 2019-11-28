@@ -12,6 +12,7 @@ export default function Clickers() {
 
   return (
     <div>
+      <h2>Testing async actions</h2>
       <button onClick={increase}>Up</button>
       <span test-id="count">{count}</span>
       <button onClick={decrease}>Down</button>
