@@ -21,7 +21,7 @@ class Counter extends Component {
         <h2>Testing redux</h2>
         <div>
           <button onClick={this.decrement}>-</button>
-          <span data-testid="count-value">{this.props.count}</span>
+          <span test-id="count-value">{this.props.count}</span>
           <button onClick={this.increment}>+</button>
         </div>
       </div>
