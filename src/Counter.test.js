@@ -24,13 +24,19 @@ function renderWithRedux(
   }
 }
 
-test('can render with redux with defaults', () => {
-  const { getByTestId, getByText } = renderWithRedux(<Counter />)
-  fireEvent.click(getByText('+'))
-  expect(getByTestId('count-value')).toHaveTextContent('1')
+it('should render with redux with defaults', () => {
+  const { getByTestId } = renderWithRedux(<Counter />)
+  expect(getByTestId('count-value')).toHaveTextContent('0')
 })
 
-test('can render with redux with custom initial state', () => {
+it('should render with redux with custom initial state', () => {
+  const { getByTestId } = renderWithRedux(<Counter />, {
+    initialState: { count: 3 },
+  })
+  expect(getByTestId('count-value')).toHaveTextContent('3')
+})
+
+it('should decrement the state by one, when the minus button is clicked', () => {
   const { getByTestId, getByText } = renderWithRedux(<Counter />, {
     initialState: { count: 3 },
   })
@@ -38,8 +44,15 @@ test('can render with redux with custom initial state', () => {
   expect(getByTestId('count-value')).toHaveTextContent('2')
 })
 
-test('can render with redux with custom store', () => {
-  // this is a silly store that can never be changed
+it('should increment the state by one, when the plus button is clicked', () => {
+  const { getByTestId, getByText } = renderWithRedux(<Counter />, {
+    initialState: { count: 3 },
+  })
+  fireEvent.click(getByText('+'))
+  expect(getByTestId('count-value')).toHaveTextContent('4')
+})
+
+it('can render with redux with custom store that can never be changed', () => {
   const store = createStore(() => ({ count: 1000 }))
   const { getByTestId, getByText } = renderWithRedux(<Counter />, {
     store,
