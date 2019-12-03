@@ -1,30 +1,14 @@
 import React from 'react'
 import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import { render, fireEvent, cleanup } from '@testing-library/react'
+import { fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import { reducer } from './reducers'
+import { renderWithRedux } from './helpers'
 import Counter from './Counter'
 
 afterEach(cleanup)
 
-// this is a handy function that I normally make available for all my tests
-// that deal with connected components.
-// you can provide initialState for the entire store that the ui is rendered with
-function renderWithRedux(
-  ui,
-  { initialState, store = createStore(reducer, initialState) } = {}
-) {
-  return {
-    ...render(<Provider store={store}>{ui}</Provider>),
-    // adding `store` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
-    store,
-  }
-}
-
 it('should render with redux with defaults', () => {
+  // see ./helpers
   const { getByTestId } = renderWithRedux(<Counter />)
   expect(getByTestId('count-value')).toHaveTextContent('0')
 })
@@ -52,7 +36,7 @@ it('should increment the state by one, when the plus button is clicked', () => {
   expect(getByTestId('count-value')).toHaveTextContent('4')
 })
 
-it('can render with redux with custom store that can never be changed', () => {
+it('should render with redux with custom store that can never be changed', () => {
   const store = createStore(() => ({ count: 1000 }))
   const { getByTestId, getByText } = renderWithRedux(<Counter />, {
     store,
@@ -62,3 +46,9 @@ it('can render with redux with custom store that can never be changed', () => {
   fireEvent.click(getByText('-'))
   expect(getByTestId('count-value')).toHaveTextContent('1000')
 })
+
+//  O       o O       o O       o
+//  | O   o | | O   o | | O   o |
+//  | | O | | | | O | | | | O | |
+//  | o   O | | o   O | | o   O |
+//  o       O o       O o       O
